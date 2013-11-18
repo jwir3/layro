@@ -74,13 +74,8 @@ module.  Feel free to use either or both of these as your bootstrap into layro.
 ## Shims and Variable Heights ##
 Write some information in here.
 
+## API ##
+Write some information in here.
+`
 ## Live Example ##
 Write some information in here.
-
-## TODO ##
-- [ ] Turn the todo list into issues. :)
-- [ ] Import jQuery using RequireJS, rather than the archaic way we do it now.
-- [ ] Make the library be able to infer roots based on the location of parents.
-- [ ] Make the library work a bit better with nested parent/root structures.
-- [ ] Verify that the library works with `height: auto` rows.
-- [ ] Add a conveinence method that automatically adjusts everything in the page, probably used for a onload handler.
