@@ -42,8 +42,8 @@ the rest of the DOM using roots. Roots are defined by adding the attribute
 ```
 
 ## TODO ##
-[ ] Make the library be able to infer roots based on the location of parents.
-[ ] Make the library work a bit better with nested parent/root structures.
-[ ] Verify that the library works with width="auto" rows.
-[ ] Add a conveinence method that automatically adjusts everything in the page, probably used for a onload handler.
+- [ ] Make the library be able to infer roots based on the location of parents.
+- [ ] Make the library work a bit better with nested parent/root structures.
+- [ ] Verify that the library works with width="auto" rows.
+- [ ] Add a conveinence method that automatically adjusts everything in the page, probably used for a onload handler.
 
