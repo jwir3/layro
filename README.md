@@ -45,7 +45,6 @@ and run layro on the DOM object you want:
 ```javascript
   /* This assumes you have a layro object, and your root has id 'mainRoot' */
   layro.insertShimsForRoot('mainRoot');
-};
 ```
 
 ### RequireJS Module (Getting the Layro Object) ###
