@@ -76,6 +76,6 @@ Write some information in here.
 
 ## API ##
 Write some information in here.
-`
+
 ## Live Example ##
 Write some information in here.
