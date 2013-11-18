@@ -66,7 +66,7 @@ require(['layro'], function(layro) {
 	});
 
 	test("insertShimsForRoot", function() {
-		layro.insertShimsForRoot("qunit-fixture");
+		var shimsInserted = layro.insertShimsForRoot("qunit-fixture");
 
 		// Now, all parent boxes should be the same height.
 		var firstParent = -1;
@@ -78,5 +78,9 @@ require(['layro'], function(layro) {
 				equal($(this).height(), firstParent, "Height of element '" + myId + "' should be the same as the height of the first parent.");
 			}
 		});
+
+		equal(shimsInserted, 6, "6 shims should have been inserted");
+		var totalShims = $('.layroShim').length;
+		equal(totalShims, 6, "Document should have the same number of shims as were inserted");
 	});
 });

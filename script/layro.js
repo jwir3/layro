@@ -1,5 +1,15 @@
 define("layro", [], function() {
   return {
+
+    /**
+     * Get the number of rows within a DOM element having specified root id.
+     *
+     * @param aRootId The DOM id of the element for which to find the number of
+     *        rows.
+     *
+     * @returns The number of rows in the root. This is the maximum rows in any of the
+     *           root's parents.
+     */
     getNumberOfRowsForRoot: function(aRootId) {
       var totalRows = 0;
       $('#' + aRootId).find('[data-align="parent"]').each(function() {
@@ -51,14 +61,24 @@ define("layro", [], function() {
       var numRows = layroObj.getNumberOfRowsForRoot(aRootID);
       var numShimsInserted = 0;
       for (var nextRow = 1; nextRow <= numRows; nextRow++) {
-        layroObj.insertShimsForRow(nextRow, aRootID);
+        numShimsInserted += layroObj.insertShimsForRow(nextRow, aRootID);
       }
+
+      return numShimsInserted;
     },
 
+    /**
+     * Insert a number of shims necessary to make a given row align across all parents.
+     *
+     * @param aRow The number of row which we want to align.
+     * @param aRootID The ID of the root element on which we want to align.
+     *
+     * @returns The number of shims inserted.
+     */
     insertShimsForRow: function(aRow, aRootID) {
       var layroObj = this;
       var root = $('#' + aRootID);
-      var shimInserted = false;
+      var numShimsInserted = 0;
 
       console.log("Asked to insert shims for row with root id: " + aRootID);
       // get the maximum height for the row
@@ -89,15 +109,27 @@ define("layro", [], function() {
           console.log("Shim height: " + shimHeight);
           if (shimHeight > 0) {
             console.log("Inserting a shim with height: " + shimHeight);
-            shimInserted = true;
+            numShimsInserted = numShimsInserted + 1;
             layroObj.insertShimAfter(rowObj, shimHeight);
           }
         }
       });
 
-      return shimInserted;
+      return numShimsInserted;
     },
 
+    /**
+     * Insert a shim after a given element within a layro parent.
+     *
+     * This method simply inserts a shim after a given element in the DOM. Ideally,
+     * the element after which we want to insert has, as its parent, a layro parent.
+     * This condition isn't enforced, however. You probably don't want to use this
+     * method directly. Use insertShimsForRoot() or insertShimsForRow() instead.
+     *
+     * @param aAfterElement The element after which we want a shim.
+     * @param aHeightOfShim A numeric value indicating the number of CSS pixels the height
+     *        of the shim should be.
+     */
     insertShimAfter: function(aRowObject, aHeightOfShim) {
       console.log("Inserting layro shim after object with id: " + aRowObject.attr('id'));
       console.log(aRowObject.attr('id'));
@@ -124,6 +156,17 @@ define("layro", [], function() {
       return false;
     },
 
+    /**
+     * Retrieve the maximum height of any element in a given row.
+     *
+     * @param aRow A numeric value indicating the row for which the max height should be calculated.
+     * @param aRootID An ID for the DOM element serving as the row's grandparent.
+     *
+     * @return The maximum height of any element in the specified row and root.
+     *
+     * @throws An exception if the maximum height for a given row is less than 0. This usually
+     *         indicates that the row wasn't found, or that no element with specified ID exists.
+     */
     getMaxHeightForRow: function(aRow, aRootID) {
       var aRoot = $('#' + aRootID);
 
