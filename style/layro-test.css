@@ -1,0 +1,36 @@
+      .outer-box {
+  	  	border: 2px solid rgb(0, 0, 0, 0.5);
+  	  	padding: 0.5em 0.5em;
+  	  	border-radius: 2px 2px 2px 2px;
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+  	  }
+
+  	  .inner-box {
+  	  	background-color: rgb(238, 238, 238);
+        text-align: center;
+        border: 1px solid rgb(0, 0, 0, 0.2);
+        width: 90%;
+  	  }
+
+  	  .inner-box-1 {
+        height: 40px;
+  	  }
+
+      .inner-box-2 {
+        height: 50px;
+      }
+
+      .inner-box-3 {
+        height: 25px;
+      }
+
+      .inner-box-4 {
+        height: 75px;
+      }
+
+      .measureBox {
+        padding: 0;
+        margin: 0;
+      }
