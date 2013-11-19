@@ -37,8 +37,9 @@ require(['layro'], function(layro) {
 		// Row 1: 40px
 		ok(layro.getMaxHeightForRow(1, "qunit-fixture") == 42, "row 1 max height should be 42px");
 
-		// Row 2: 50px
-		ok(layro.getMaxHeightForRow(2, "qunit-fixture") == 52, "row 2 max height should be 52px");
+		// Row 2: Same as Row 2, Column 2.
+		var expectedHeight = $('#2-2').outerHeight();
+		ok(layro.getMaxHeightForRow(2, "qunit-fixture") == expectedHeight, "row 2 max height should be " + expectedHeight + "px");
 
 		// Row 3: 25px
 		ok(layro.getMaxHeightForRow(3, "qunit-fixture") == 27, "row 2 max height should be 27px");
@@ -79,8 +80,8 @@ require(['layro'], function(layro) {
 			}
 		});
 
-		equal(shimsInserted, 6, "6 shims should have been inserted");
+		equal(shimsInserted, 9, "9 shims should have been inserted");
 		var totalShims = $('.layroShim').length;
-		equal(totalShims, 6, "Document should have the same number of shims as were inserted");
+		equal(totalShims, 9, "Document should have the same number of shims as were inserted");
 	});
 });
