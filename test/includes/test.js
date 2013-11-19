@@ -1,3 +1,13 @@
+/*
+ * We need to provide a config so that requirejs knows where to
+ * find layro.
+ */
+require.config({
+  paths: {
+    layro: '../../script/layro'
+  }
+});
+
 require(['layro'], function(layro) {
 	test("getElementsInRow", function() {
 		var parents = $('[data-align="parent"]');
