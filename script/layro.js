@@ -2,6 +2,37 @@ define("layro", [], function() {
   return {
 
     /**
+     * Main entry point for layro.
+     *
+     * Essentially, this just is a wrapper for insertShimsForAllRoots(). You should
+     * use this function if all you want to do is get all of your rows aligned as
+     * outlined in the README. If you need to do something more complex, then use
+     * the other methods of the API.
+     *
+     * @returns The number of shims inserted into the document.
+     */
+    insertShims: function() {
+      var layroObj = this;
+      return layroObj.insertShimsForAllRoots();
+     },
+
+    /**
+     * Insert shims for all roots in the document.
+     *
+     * @returns The number of shims inserted into the document.
+     */
+    insertShimsForAllRoots: function() {
+      var layroObj = this;
+
+      var numShimsInserted = 0;
+      $('[data-align=root]').each(function() {
+        numShimsInserted += layroObj.insertShimsForRoot($(this).attr('id'));
+      });
+
+      return numShimsInserted;
+    },
+
+    /**
      * Get the number of rows within a DOM element having specified root id.
      *
      * @param aRootId The DOM id of the element for which to find the number of
@@ -30,12 +61,15 @@ define("layro", [], function() {
      * @param aRootID The ID of the root box into which to start descending (optional).
      */
     getElementsInRow: function(aRow, aRootID) {
+      console.log("layro: Getting elements from row " + aRow + " in root with id: " + aRootID);
       if (!aRootID) {
         aRoot = $('[data-align="root"]').first();
         aRootID = aRoot.attr('id');
+      } else {
+        aRoot = $('#' + aRootID);
       }
-
-      console.log("Root has ID: " + aRoot.attr('id'));
+      
+      console.log("layro: Root has ID: " + aRoot.attr('id'));
 
       var elements = new Array();
       aRoot.find('[data-row="' + aRow + '"]').each(function() {
